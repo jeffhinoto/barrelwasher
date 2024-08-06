@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import './Timer.css'; // Importando o arquivo de estilo CSS
 
-function App() {
+const App = () => {
+  const [timeLeft, setTimeLeft] = useState(0);
+
+  useEffect(() => {
+    let timer;
+    if (timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft(prevTime => prevTime - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      clearInterval(timer);
+    }
+
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  const startTimer = (duration) => {
+    setTimeLeft(duration);
+  };
+
+  const getBackgroundColor = () => {
+    return timeLeft > 0 ? 'green' : 'black';
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="timer-container" style={{ backgroundColor: getBackgroundColor() }}>
+      {timeLeft > 0 && <h1>Tempo restante: {timeLeft} segundo(s)</h1>}
+      <div>
+      <button onClick={() => startTimer(30)}>Enxágue</button>
+      <button onClick={() => startTimer(120)}>Lavagem</button>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
