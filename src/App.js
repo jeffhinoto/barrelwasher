@@ -22,11 +22,12 @@ const App = () => {
   };
 
   const getBackgroundColor = () => {
-    return timeLeft > 0 ? 'green' : 'black';
+    return timeLeft > 0 ? 'green' : '#0f0b0c';
   };
 
   return (
     <div className="timer-container" style={{ backgroundColor: getBackgroundColor() }}>
+      <img src='https://i.imgur.com/FmLQw4M.png'></img>
       {timeLeft > 0 && <h1>Tempo restante: {timeLeft} segundo(s)</h1>}
       <div>
       <button onClick={() => startTimer(30)}>Enxágue</button>
