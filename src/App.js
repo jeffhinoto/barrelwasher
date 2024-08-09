@@ -28,7 +28,7 @@ const App = () => {
   return (
     <div className="timer-container" style={{ backgroundColor: getBackgroundColor() }}>
       <img src='https://i.imgur.com/FmLQw4M.png'></img>
-      {timeLeft > 0 && <h1>Tempo restante: {timeLeft} segundo(s)</h1>}
+      {timeLeft > 0 ? <h1>Tempo restante: {timeLeft} segundo(s)</h1>:<h1>Cervejaria Araucária</h1>}
       <div>
       <button onClick={() => startTimer(30)}>Enxágue</button>
       <button onClick={() => startTimer(120)}>Lavagem</button>
